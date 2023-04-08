@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { TokenGroup } from "./tokenGroup";
 import { Layout } from "../layout/layout";
 import { NewsContainer } from "./newsContainer";
 import './index.css'
-
+import { useCallback } from 'react';
 interface News {
     title: string;
     description: string;
@@ -11,12 +11,43 @@ interface News {
     url: string;
     whyGotRecommended: string;
 }
+function useOnScreen(options: any) {
+    const ref = useRef(null);
+    const [isVisible, setIsVisible] = useState(false);
+  
+    useEffect(() => {
+      const observer = new IntersectionObserver(([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      }, options);
+  
+      if (ref.current) {
+        observer.observe(ref.current);
+      }
+  
+      return () => {
+        if (ref.current) {
+          observer.unobserve(ref.current);
+        }
+      };
+    }, [options]);
+  
+    return [ref, isVisible];
+  }
 
 export const NewsFeed = () => {
     const [newsList, setNewsList] = useState<News[]>([]);
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-
+    const [containerRef, isVisible] = useOnScreen({ rootMargin: '0px', threshold: 0.5 });
+    useEffect(() => {
+        if (isVisible) {
+            if (containerRef && (typeof containerRef === 'object' && 'current' in containerRef) && containerRef.current) {
+            console.log('The key of the NewsContainer on the screen:', containerRef.current);
+          } else {
+            console.log('The ref does not have a current property.');
+          }
+        }
+      }, [isVisible, containerRef]);
     useEffect(() => {
         fetchNews();
     }, []);
@@ -29,12 +60,7 @@ export const NewsFeed = () => {
         setIsLoading(false);
     };
 
-    const handleScroll: React.UIEventHandler<HTMLDivElement> = (event) => {
-        const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-        if (scrollTop === 0 && !isLoading) {
-            setPage(prevPage => prevPage + 1);
-            fetchNews();
-        }
+    const handleScroll = (index: number) => {
     };
 
     return (
@@ -48,25 +74,26 @@ export const NewsFeed = () => {
 
                 </p>
             </div>
-            <div onScroll={handleScroll} style={{ overflowY: "scroll", height: "calc(100vh - 200px)" }}>
-                {newsList.map((newsItem, index) => (
-                    <NewsContainer
-                        key={index}
-                        title={newsItem.title}
-                        description={newsItem.description}
-                        image={newsItem.image}
-                        url={newsItem.url}
-                        whyGotRecommended={newsItem.whyGotRecommended}
-                    />
-                ))}
+            <div style={{ overflowY: "scroll", height: "calc(100vh - 200px)" }}>
+                {newsList.map((newsItem, index) => {
+                    handleScroll(index);
+                    return (
+                        <NewsContainer
+                        ref={containerRef as any}
+                            key={index}
+                            title={newsItem.title}
+                            description={newsItem.description}
+                            image={newsItem.image}
+                            url={newsItem.url}
+                            whyGotRecommended={newsItem.whyGotRecommended}
+                        />
+                    );
+                })}
                 {isLoading && <p>Loading...</p>}
             </div>
         </Layout>
     );
 }
-
-
-
 
 const data = [
     'hello',
@@ -87,6 +114,7 @@ function returnMockNews(): News[] {
         whyGotRecommended: `You might be interested in this article because you are interested in ${data[index]}.`
     }));
 }
+
 const news = {
     title: "What could Trump’s arraignment mean for his political future?",
     description: "Former President Trump was charged with 34 felony counts today – but what could this mean for the future of his political career? NBC News’ Kristen Welker reports on the unprecedented shakeup for the race to the White House in 2024.",

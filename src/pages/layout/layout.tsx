@@ -77,7 +77,7 @@ const NavBar = () => {
             textAlign: 'center',
             justifyContent: 'space-around',
             alignItems: 'center',
-            marginTop: '5px',
+            marginTop: '10px',
             backgroundColor: 'white',
         }}>
             <div onClick={() => setCurrentPage(0)}>

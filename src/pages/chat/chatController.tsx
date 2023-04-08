@@ -1,10 +1,11 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect } from "react";
 import { Layout } from "../layout/layout";
 import { Chip } from "@mui/material";
 import add from './Add.png'
 import startConvoButton from './startConvo.svg'
 import './chatController.css'
 import chatAvatar from './chatAvatar.svg'
+import { ChatPage } from "./chatPage";
 
 function generateRandomGradient() {
     const colors = [
@@ -33,8 +34,12 @@ interface ChatProps {
     setInput : React.Dispatch<React.SetStateAction<string>>;
     chips : string[];
     setChips : React.Dispatch<React.SetStateAction<string[]>>;
+    setID : React.Dispatch<React.SetStateAction<string>>;
 }
-const CreateAConversation = ({input, setInput, chips, setChips} : ChatProps) => {
+const CreateAConversation = ({input, setInput, chips, setChips, setID} : ChatProps) => {
+    const onSubmit = () => {
+        setID('1234');
+    }
     return (
         <>
         <div className="Create-Convo-title">
@@ -61,7 +66,7 @@ const CreateAConversation = ({input, setInput, chips, setChips} : ChatProps) => 
                 } } />
             </div>
 
-        </div><div className="Create-Convo-button">
+        </div><div className="Create-Convo-button" onClick={onSubmit}>
                 <img src={startConvoButton} alt="start conversation" />
             </div></>
 
@@ -74,24 +79,34 @@ interface availableChats {
     tags : string[];
 }
 
-
-const ShowAvailableChats = ({availableChats} : any) => {
+interface ShowAvailableChatsProps {
+    availableChats : availableChats[];
+    setID : React.Dispatch<React.SetStateAction<string>>;
+}
+const ShowAvailableChats = ({availableChats, setID} : ShowAvailableChatsProps) => {
     return (
         <>
         <div className="Available-Chats">
             {availableChats.map((chat : availableChats) => (
-                <div className="Available-Chats-chat">
+                <div className="Available-Chats-chat" onClick={
+                    () => {
+                        setID(chat.chatId);
+                    }
+                }>
+                    <div className="Available-Chats-chat-avatar"style={{...generateRandomGradient as CSSProperties}}>
+                        <img src={chatAvatar} alt="chat avatar"  />
+                    </div>
                     <div className="Available-Chats-chat-topic">
                         {chat.chatTopic}
                     </div>
                     <div className="Available-Chats-chat-tags">
-                        {chat.tags.map((tag) => (
-                            <Chip label={tag} variant="outlined" />
-                        ))}
+                        {
+                            chat.tags.slice(0, 1).map((tag) => (
+                                <Chip label={tag} variant="outlined" />
+                            ))
+                        }
                     </div>
-                    <div className="Available-Chats-chat-avatar"style={{...generateRandomGradient as CSSProperties}}>
-                        <img src={chatAvatar} alt="chat avatar"  />
-                    </div>
+                    
                 </div>
             ))}
         </div>
@@ -104,17 +119,21 @@ export const Chat = () => {
     const [input, setInput] = React.useState<string>('');
     const [chips, setChips] = React.useState<string[]>([]);
     const [availableChats, setAvailableChats] = React.useState<availableChats[]>(tmp);
+    const [id, setId] = React.useState<string>('');
+   
     return (
         <Layout>
+            { id !== '' ? <ChatPage chatID={id} /> : 
             <div className="Chat-landing">
                 <CreateAConversation
                     input={input}
                     setInput={setInput}
                     chips={chips}
                     setChips={setChips}
+                    setID={setId}
                 />
-                <ShowAvailableChats availableChats={availableChats} />
-            </div>
+                <ShowAvailableChats availableChats={availableChats} setID={setId} />
+            </div>}
             
         </Layout>
     );
@@ -132,8 +151,4 @@ const tmp : availableChats[] = [
         chatId: '1234',
         tags: ['stock market', 'finance', 'investing']
     },
-    {
-        chatTopic: 'PLEASE NO CSSS',
-        chatId: '1234',
-        tags: ['stock market', 'finance', 'investing']
-    }]
+   ]

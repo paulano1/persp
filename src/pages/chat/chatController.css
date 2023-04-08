@@ -53,4 +53,53 @@
     height: 3rem;
     cursor: pointer;
   }
-  
+
+  /* ShowAvailableChats.module.css */
+.Available-Chats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 0 -10px;
+  margin-left: 3%;
+  margin-right: 5%;
+  align-items: center;
+  font-family: Nunito;
+}
+
+.Available-Chats-chat {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 10px;
+  box-sizing: border-box;
+  background-color: rgb(238, 238, 238);
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid #000000;
+}
+
+.Available-Chats-chat-topic {
+  font-family: Nunito;
+  text-align: left;
+}
+
+.Available-Chats-chat-tags {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: 0;
+  margin-top: 0.5rem;
+}
+
+.Available-Chats-chat-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+.Available-Chats-chat-avatar img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Add any additional styles needed */

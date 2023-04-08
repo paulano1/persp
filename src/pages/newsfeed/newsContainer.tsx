@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import './newsContainer.css'
 import bar from './spectrum.png'
 import info from './info.png'
@@ -42,13 +42,36 @@ interface NewsContainerProps {
         url: string;
         whyGotRecommended: string;
     }
-    
-export const NewsContainer = ({ title, description, image, url, whyGotRecommended }: NewsContainerProps) => {
+
+export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps>(
+        ({ title, description, image, url, whyGotRecommended }, ref) => {
     const [comment, setComment] = React.useState('')
     const [ liked, setLiked ] = React.useState<boolean>(false)
+    const onIntersection = useCallback(
+        (entries: IntersectionObserverEntry[]) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    console.log('Key:', entry.target.getAttribute('data-key'));
+                }
+            });
+        },
+        []
+    );
+    useEffect(() => {
+        if (ref && (typeof ref === 'object' && 'current' in ref) && ref.current) {
+            const observer = new IntersectionObserver(onIntersection);
+            observer.observe(ref.current);
+
+            return () => {
+                if (ref.current) {
+                    observer.unobserve(ref.current);
+                }
+            };
+        }
+    }, [ref, onIntersection]);
    
         return (
-            <div className="NewsContainer">
+            <div ref={ref} className="NewsContainer">
                 <div className="NewsContainer-image" style={{ backgroundImage: `url(${image})` }}>
                     <div className="NewsContainer-title">{title}</div>
                     <img height="16" width="16" src='https://icons.duckduckgo.com/ip3/www.usnews.com.ico' className="News-logo"/>
@@ -93,7 +116,6 @@ export const NewsContainer = ({ title, description, image, url, whyGotRecommende
             </div>
         );
 }
-
-
+)
 
 
