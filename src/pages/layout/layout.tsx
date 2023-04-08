@@ -16,6 +16,8 @@ const Header = ({children}: LayoutProps) => {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
+            margin: '1rem',
+            marginBottom: '0.5rem' 
         }}>
                 <img src={plusImg} alt="plus logo" style={{
                     paddingLeft: '1rem',
@@ -72,7 +74,7 @@ const NavBar = () => {
             display: 'flex',
             position: 'fixed',
             bottom: 0,
-            paddingBottom: '1rem',
+            paddingBottom: '2rem',
             width: '100%',
             textAlign: 'center',
             justifyContent: 'space-around',
@@ -109,7 +111,7 @@ export const Layout = ({ children }: LayoutProps) => {
         }}
         >
             <Header>
-                Following
+                <span style={{opacity:'0.5', cursor: 'pointer'}}>Following  </span> <span>All Feed</span>
             </Header>
             {children}
             

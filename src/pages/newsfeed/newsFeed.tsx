@@ -71,8 +71,8 @@ export const NewsFeed = () => {
             
             <div style={{ overflowY: "scroll", height: "calc(100vh - 200px)" }}>
               <div className="Goodmorning">
-                  <p style={{fontSize:'6vw', textAlign:'left',margin: '0 2rem 1rem', font: 'Nunito'}}>
-                  good afternoon! here’s your news pick for today
+                  <p style={{fontSize:'6vw', textAlign:'left',margin: '0 2rem 1rem', fontFamily: 'Nunito'}}>
+                  good afternoon! here are your news picks for today
 
                   </p>
               </div>

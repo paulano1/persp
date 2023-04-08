@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import './newsContainer.css'
 import bar from './spectrum.png'
-import info from './info.png'
 import heart from './heart.svg'
 import addcomment from './comment.svg'
 import isliked from './liked.svg'
 import repost from './repost.svg'
 import save from './save.svg'
 import { Slider } from '../components/slider'
+import { ConstantSlider } from '../components/constantSlider'
 
 const exampleQuery = [[{"label":"Democrat","score":0.9850274324417114},{"label":"Republican","score":0.014972536824643612}]]
 
@@ -77,27 +77,16 @@ export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps
                     <img height="16" width="16" src='https://icons.duckduckgo.com/ip3/www.usnews.com.ico' className="News-logo"/>
                 </div>
                 <div className="NewsContainer-description">{description}. <a href="#">Tap to read more.</a></div>
-                <div className="LeaningContainer">
-                    {/* <div className="SpectrumContainer">
-                        <div className="Spectrum-gradient">
-                            <div className="Spectrum-slider">
-                            </div>
-                        </div>
-                        <div className="SpectrumContainer-directions">
-                            <p>Left</p>
-                            <p>Center</p>
-                            <p>Right</p>
-                        </div>
-                    </div> */}
-                    <Slider />
-                    <img src={info} className="Info-icon"/>
 
-                </div>
+                <ConstantSlider
+                defaultValue={20}
+                />
+              
                 <div className="News-actions">
                     <div className="News-action-quote-container">
                         <img src={repost} className="News-quote-repost-icon"/>
                         <div className="News-action-quote">
-                            <input type="text" placeholder="repost with a comment" onChange={
+                            <input type="text" placeholder="quote repost" onChange={
                                 (e) =>{
                                     setComment(e.currentTarget.value)
                                 }

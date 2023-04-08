@@ -35,16 +35,6 @@ export const Profile = () =>{
 
                     <Slider/>
 
-                        {/* <div className="SpectrumContainer">
-                            {/* <img src={bar} className="Spectrum-image"/> */}
-                             {/* <div className="Spectrum-gradient">
-                                <div className="Spectrum-slider">
-                                </div>
-                            </div> */}
-                            
-                        {/* </div>  */}
-                    <img src={info} className="Info-icon"/>
-                    
                 </div>
                 </div>
             </div>

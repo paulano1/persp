@@ -78,14 +78,6 @@
 }
 
 
-.LeaningContainer{
-    margin-top: 1rem;
-    display: flex;
-    width: 100%;
-    flex-shrink: 0;
-    justify-content: space-between;
-
-}
 
 
 
@@ -134,12 +126,13 @@
 .News-actions{
     display: flex;
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
 .News-action-quote-container{
-    width: 60%;
+    width: 95%;
     height: auto;
     background-color: #eceaea;
     border-radius: 0.3rem;
@@ -150,10 +143,7 @@
 }
 
 
-.News-action-quote{
-    
-    
-}
+
 
 .News-quote-repost-icon{
     opacity: 0.5;
@@ -166,7 +156,10 @@
     border: none;
 }
 .News-action-buttons{
-    width: 40%;
+    margin: 2rem 0 1rem 0;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
 }
 .News-action-btn{
     width: fit-content;
