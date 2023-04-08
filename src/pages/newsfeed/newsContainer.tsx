@@ -7,6 +7,7 @@ import addcomment from './comment.svg'
 import isliked from './liked.svg'
 import repost from './repost.svg'
 import save from './save.svg'
+import { Slider } from '../components/slider'
 
 const exampleQuery = [[{"label":"Democrat","score":0.9850274324417114},{"label":"Republican","score":0.014972536824643612}]]
 
@@ -54,8 +55,7 @@ export const NewsContainer = ({ title, description, image, url, whyGotRecommende
                 </div>
                 <div className="NewsContainer-description">{description}. <a href="#">Tap to read more.</a></div>
                 <div className="LeaningContainer">
-                    <div className="SpectrumContainer">
-                        {/* <img src={bar} className="Spectrum-image"/> */}
+                    {/* <div className="SpectrumContainer">
                         <div className="Spectrum-gradient">
                             <div className="Spectrum-slider">
                             </div>
@@ -65,7 +65,8 @@ export const NewsContainer = ({ title, description, image, url, whyGotRecommende
                             <p>Center</p>
                             <p>Right</p>
                         </div>
-                    </div>
+                    </div> */}
+                    <Slider />
                     <img src={info} className="Info-icon"/>
 
                 </div>
