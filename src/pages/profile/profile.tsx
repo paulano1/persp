@@ -3,6 +3,7 @@ import { Layout } from "../layout/layout";
 import './profile.css'
 import newsicon from './news-white.png'
 import info from './info.png'
+import { Slider } from '../components/slider'
 
 export const Profile = () =>{
     const personName = "Jo" 
@@ -27,23 +28,23 @@ export const Profile = () =>{
                         <span className="checkmark"></span>
                     </label>
                     {/* line break */}
+                    
                     <span style={{width: 'auto', height: '1px', margin: '1rem 0rem 0.5rem 2rem', background: '#00000050'}}></span>
                     <p style={{textAlign: 'left', marginLeft: '2rem', fontWeight: 'bold'}}>Your leanings</p>
                     <div className="LeaningContainer">
-                        <div className="SpectrumContainer">
+
+                    <Slider/>
+
+                        {/* <div className="SpectrumContainer">
                             {/* <img src={bar} className="Spectrum-image"/> */}
-                            <div className="Spectrum-gradient">
+                             {/* <div className="Spectrum-gradient">
                                 <div className="Spectrum-slider">
                                 </div>
-                            </div>
-                            <div className="SpectrumContainer-directions">
-                                <p>Left</p>
-                                <p>Center</p>
-                                <p>Right</p>
-                            </div>
-                        </div>
+                            </div> */}
+                            
+                        {/* </div>  */}
                     <img src={info} className="Info-icon"/>
-
+                    
                 </div>
                 </div>
             </div>
