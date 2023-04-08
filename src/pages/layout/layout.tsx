@@ -64,30 +64,33 @@ const NavBar = () => {
             default:
                 break;
         }
+        console.log(window.location.pathname)
     }, [currentPage]);
 
     return (
         <div style={{
             display: 'flex',
-            position: 'absolute',
-            left: 0,
-            bottom: 15,
+            position: 'fixed',
+            bottom: 0,
+            paddingBottom: '1rem',
             width: '100%',
-            zIndex: 5,
             textAlign: 'center',
             justifyContent: 'space-around',
             alignItems: 'center',
-            marginTop: '5px'
+            marginTop: '5px',
+            backgroundColor: 'white',
         }}>
             <div onClick={() => setCurrentPage(0)}>
-            <NavBarLogo active={currentPage === 0} img={news}/>
+            <NavBarLogo active={currentPage === 0 || window.location.pathname == '/newsfeed'
+            } img={news}/>
             </div>
             <div onClick={() => setCurrentPage(1)}>
-            <NavBarLogo active={currentPage === 1} img={chat}/>
+            <NavBarLogo active={currentPage === 1 || window.location.pathname == '/chat'
+            } img={chat}/>
             </div>
             <div onClick={() => setCurrentPage(2)}>
             <NavBarLogo active={
-                currentPage === 2
+                currentPage === 2 || window.location.pathname == '/profile'
                 } img={user}/>
             </div>
         </div>
