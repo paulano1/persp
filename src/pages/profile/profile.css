@@ -1,0 +1,140 @@
+
+.Profile-container{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin: 0 2rem 0 0;
+}
+.Profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.View-posts-btn{
+    width: auto;
+    height: auto;
+    color: white;
+    background: #000000;
+    border-radius: 0.5rem;
+    display: block;
+    padding: 1rem;
+    justify-content: center;
+    border: none;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    float: left;
+    font-weight: bold;
+}
+.View-posts-btn img{
+    margin-right: 1rem;
+}
+
+.checkbox-container{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+.checkbox-container span{
+    font-weight: bold;
+    font-size: 1rem
+}
+
+
+
+checkbox-title {
+    font-size: 1rem;
+    margin-right: 1rem;
+  }
+  
+  input[type='checkbox'] {
+    display: none;
+    
+  }
+  
+  .checkmark {
+    display: inline-block;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 1rem;
+    border-radius: 50%;
+    border: 1px solid gray;
+    margin-right: 0.5rem;
+    position: relative;
+  }
+  
+  .checkmark::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background-color: gray;
+  }
+  
+  input[type='checkbox']:checked ~ .checkmark::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+
+
+.LeaningContainer{
+    margin-top: 3rem;
+    display: flex;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: auto;
+    flex-shrink: 0;
+    justify-content: space-between;
+
+}
+
+
+
+.SpectrumContainer{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Spectrum-gradient{
+    width: 100%;
+    height: 0.3rem;
+    background: linear-gradient(90deg, #77BFF3 -1.16%, #77F3EC -1.15%, #F0F0F0 50.97%, #DE77EF 78.69%, #F53838 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.Spectrum-slider{
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 5px solid black;
+    background-color: none;
+    border-radius: 50%;
+    position: relative;
+    /* left: 20px; */
+}
+
+
+
+.Info-icon{
+    height: fit-content;
+    width: 1.3rem;
+}
+
+.SpectrumContainer-directions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    opacity: 0.5;
+    
+}
+

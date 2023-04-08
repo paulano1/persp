@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Authentication , Layout, NewsFeed} from './pages';
+import { Authentication , Layout, NewsFeed, Profile} from './pages';
 import { Route, Switch } from "wouter";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/">
-          <NewsFeed />
+          <Profile/>
         </Route>
         <Route path="/newsfeed/:userID">
           {({userID}) => `404, Sorry the page ${userID} does not exist!`}

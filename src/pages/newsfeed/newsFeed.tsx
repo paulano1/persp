@@ -29,7 +29,7 @@ export const NewsFeed = () => {
                 <TokenGroup tags={data} />
             </div>
             <div className="Goodmorning">
-                <p style={{fontSize:'6vw', textAlign:'left',margin: '0 2rem 1rem'}}>
+                <p style={{fontSize:'6vw', textAlign:'left',margin: '0 2rem 1rem', font: 'Nunito'}}>
                 good afternoon! here’s your news pick for today
 
                 </p>
