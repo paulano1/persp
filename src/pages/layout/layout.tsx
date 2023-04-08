@@ -49,20 +49,22 @@ const NavBarLogo = ({active, img}: logoProps) => {
 
 
 const NavBar = () => {
-    const [currentPage, setCurrentPage] = React.useState(0);
-    // React.useEffect(() => {
-    //     switch (currentPage) {
-    //         case 0:
-    //             window.location.href = '/news';
-    //             break;
-    //         case 1:
-    //             window.location.href = '/chat';
-    //             break;
-    //         case 2:
-    //             window.location.href = '/user';
-    //             break;
-    //     }
-    // }, [currentPage]);
+    const [currentPage, setCurrentPage] = React.useState(-1);
+    React.useEffect(() => {
+        switch (currentPage) {
+            case 0:
+                window.location.href = '/newsfeed';
+                break;
+            case 1:
+                window.location.href = '/chat';
+                break;
+            case 2:
+                window.location.href = '/profile';
+                break;
+            default:
+                break;
+        }
+    }, [currentPage]);
 
     return (
         <div style={{

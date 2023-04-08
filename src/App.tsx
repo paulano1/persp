@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Authentication , Layout, NewsFeed, Profile} from './pages';
+import { Authentication , Layout, NewsFeed, Profile, Chat} from './pages';
 import { Route, Switch } from "wouter";
 
 function App() {
@@ -11,14 +11,14 @@ function App() {
         <Route path="/">
           <Profile/>
         </Route>
-        <Route path="/newsfeed/:userID">
-          {({userID}) => `404, Sorry the page ${userID} does not exist!`}
+        <Route path="/newsfeed">
+          <NewsFeed/>
         </Route>
-        <Route path="chat/:dicussionID">
-          {({dicussionID}) => `404, Sorry the page ${dicussionID} does not exist!`}
+        <Route path="/chat">
+         <Chat/>
         </Route>
-        <Route path="profile/:userID">
-          {({userID}) => `404, Sorry the page ${userID} does not exist!`}
+        <Route path="/profile">
+          <Profile/>
         </Route>
       </Switch>
     </div>
