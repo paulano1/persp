@@ -128,3 +128,47 @@
     opacity: 0.5;
     
 }
+
+
+.News-actions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.News-action-quote-container{
+    width: 60%;
+    height: auto;
+    background-color: #eceaea;
+    border-radius: 0.3rem;
+    padding: 0.4rem;
+    display: inline-flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.News-action-quote{
+    
+    
+}
+
+.News-quote-repost-icon{
+    opacity: 0.5;
+    width: fit-content;
+    margin-right: 0.3rem;
+}
+.News-action-quote input{
+    width: 100%;
+    background-color: inherit;
+    border: none;
+}
+.News-action-buttons{
+    width: 40%;
+}
+.News-action-btn{
+    width: fit-content;
+    margin-left: 0.5rem;
+}
+

@@ -2,6 +2,11 @@ import React from "react";
 import './newsContainer.css'
 import bar from './spectrum.png'
 import info from './info.png'
+import heart from './heart.svg'
+import addcomment from './comment.svg'
+import isliked from './liked.svg'
+import repost from './repost.svg'
+import save from './save.svg'
 
 const exampleQuery = [[{"label":"Democrat","score":0.9850274324417114},{"label":"Republican","score":0.014972536824643612}]]
 
@@ -38,6 +43,9 @@ interface NewsContainerProps {
     }
     
 export const NewsContainer = ({ title, description, image, url, whyGotRecommended }: NewsContainerProps) => {
+    const [comment, setComment] = React.useState('')
+    const [ liked, setLiked ] = React.useState<boolean>(false)
+   
         return (
             <div className="NewsContainer">
                 <div className="NewsContainer-image" style={{ backgroundImage: `url(${image})` }}>
@@ -62,11 +70,23 @@ export const NewsContainer = ({ title, description, image, url, whyGotRecommende
 
                 </div>
                 <div className="News-actions">
-                    <div className="News-comment">
-
+                    <div className="News-action-quote-container">
+                        <img src={repost} className="News-quote-repost-icon"/>
+                        <div className="News-action-quote">
+                            <input type="text" placeholder="repost with a comment" onChange={
+                                (e) =>{
+                                    setComment(e.currentTarget.value)
+                                }
+                            } value = {comment}></input>
+                        </div>    
                     </div>
+                    
                     <div className="News-action-buttons">
+                        {liked? <img src={isliked} className="News-action-btn"/> : <img src={heart} className="News-action-btn"/>}
                         
+                        <img src={addcomment} className="News-action-btn"/>
+                        <img src={repost} className="News-action-btn"/>
+                        <img src={save} className="News-action-btn"/>
                     </div>
                 </div>
             </div>

@@ -30,6 +30,7 @@
     padding-left: 10%;
     padding-right: 10%;
 }
+ 
 .TokenGroup-tag.selected {
     background-color: black;
     color: white;

@@ -28,6 +28,12 @@ export const NewsFeed = () => {
            <div style={{overflowX: 'scroll'}}>
                 <TokenGroup tags={data} />
             </div>
+            <div className="Goodmorning">
+                <p style={{fontSize:'6vw', textAlign:'left',margin: '0 2rem 1rem'}}>
+                good afternoon! here’s your news pick for today
+
+                </p>
+            </div>
             <div>
             <NewsContainer
                 title={news.title}
