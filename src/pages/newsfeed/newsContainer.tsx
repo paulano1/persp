@@ -61,7 +61,14 @@ export const NewsContainer = ({ title, description, image, url, whyGotRecommende
                     <img src={info} className="Info-icon"/>
 
                 </div>
-                
+                <div className="News-actions">
+                    <div className="News-comment">
+
+                    </div>
+                    <div className="News-action-buttons">
+                        
+                    </div>
+                </div>
             </div>
         );
 }
