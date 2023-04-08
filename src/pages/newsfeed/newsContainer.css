@@ -1,0 +1,129 @@
+.NewsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    border-radius: 1rem;
+    background: transparent;
+    border:none;
+    box-shadow: 0 0 20px  rgba(0, 0, 0, 0.1);
+    margin: 0 1.3rem 0 1.3rem; 
+}
+
+.NewsContainer-image {
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border:none;
+    border-radius: 1rem; /* Add this line to make the image div rounded */
+}
+
+.NewsContainer-image:before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    border: none;
+}
+
+.NewsContainer-title {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    /*background-color: rgba(255, 255, 255, 0.8);*/
+    color: white ;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: left;
+    border-radius: 1rem; /* Add this line to make the title div rounded */
+}
+
+.News-logo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 1rem;
+    width: 2rem;
+    height: auto;
+
+}
+
+
+.NewsContainer-description {
+    margin-top: 1rem;
+    text-align: left;
+    font: "inter", "sans-serif";
+    color: #55546B;
+}
+
+
+
+
+.NewsContainer-url {
+    margin-top: 1rem;
+}
+
+.NewsContainer-recommended {
+    margin-top: 1rem;
+}
+
+
+.LeaningContainer{
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    flex-shrink: 0;
+    justify-content: space-between;
+
+}
+
+
+
+.SpectrumContainer{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.Spectrum-gradient{
+    width: 100%;
+    height: 0.3rem;
+    background: linear-gradient(90deg, #77BFF3 -1.16%, #77F3EC -1.15%, #F0F0F0 50.97%, #DE77EF 78.69%, #F53838 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.Spectrum-slider{
+    width: 0.5rem;
+    height: 0.5rem;
+    border: 5px solid black;
+    background-color: none;
+    border-radius: 50%;
+    position: relative;
+    /* left: 20px; */
+}
+
+
+
+.Info-icon{
+    height: fit-content;
+}
+
+.SpectrumContainer-directions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    opacity: 0.5;
+    
+}
