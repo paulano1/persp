@@ -11,7 +11,6 @@ import { ConstantSlider } from '../components/constantSlider'
 
 const exampleQuery = [[{"label":"Democrat","score":0.9850274324417114},{"label":"Republican","score":0.014972536824643612}]]
 
-
 async function query(data: any) {
 	const response = await fetch(
 		"https://api-inference.huggingface.co/models/m-newhauser/distilbert-political-tweets",

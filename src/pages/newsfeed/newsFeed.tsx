@@ -3,7 +3,8 @@ import { TokenGroup } from "./tokenGroup";
 import { Layout } from "../layout/layout";
 import { NewsContainer } from "./newsContainer";
 import './index.css'
-import { useCallback } from 'react';
+import { QuizContainer } from "./quiz";
+
 interface News {
     title: string;
     description: string;
@@ -63,6 +64,14 @@ export const NewsFeed = () => {
     const handleScroll = (index: number) => {
     };
 
+    const conditionalRender = (index: number) => {
+      console
+        if (index % 3 === 0) {
+            return true;
+        }
+        return false;
+    };
+
     return (
         <Layout>
            <div style={{overflowX: 'scroll'}}>
@@ -78,17 +87,22 @@ export const NewsFeed = () => {
               </div>
                 {newsList.map((newsItem, index) => {
                     handleScroll(index);
-                    return (
-                        <NewsContainer
-                        ref={containerRef as any}
-                            key={index}
-                            title={newsItem.title}
-                            description={newsItem.description}
-                            image={newsItem.image}
-                            url={newsItem.url}
-                            whyGotRecommended={newsItem.whyGotRecommended}
-                        />
-                    );
+
+                    if (conditionalRender(index)) {
+                      return (
+                           <QuizContainer question={quizData.question} options={quizData.options} answer={quizData.answer} />)
+                      }
+                      else {
+                        return (
+                            <NewsContainer
+                            ref={containerRef as any}
+                                key={index}
+                                title={newsItem.title}
+                                description={newsItem.description}
+                                image={newsItem.image}
+                                url={newsItem.url}
+                                whyGotRecommended={newsItem.whyGotRecommended}
+                            />)}
                 })}
                 {isLoading && <p>Loading...</p>}
             </div>
@@ -122,4 +136,10 @@ const news = {
     image: "https://www.usnews.com/object/image/00000187-3996-d0b6-a7e7-b9f67e3a0000/ap23064025376604.jpg?update-time=1680298477110&size=responsive640",
     url: "https://www.usnews.com/news/politics/articles/2021-01-13/what-could-trumps-arraignment-mean-for-his-political-future",
     whyGotRecommended: "You might be interested in this article because you are interested in politics."
+}
+
+const quizData = {
+    question: "What is the capital of France?",
+    options: ["Paris", "London", "Berlin", "Madrid"],
+    answer: "Paris"
 }
