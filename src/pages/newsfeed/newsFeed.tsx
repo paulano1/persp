@@ -4,6 +4,7 @@ import { Layout } from "../layout/layout";
 import { NewsContainer } from "./newsContainer";
 import './index.css'
 import { QuizContainer } from "./quiz";
+import { auth } from "../../firebase/firebase";
 
 interface News {
     title: string;
@@ -51,14 +52,18 @@ export const NewsFeed = () => {
       }, [isVisible, containerRef]);
     useEffect(() => {
         fetchNews();
+        console.log(sessionStorage.getItem('user'))
     }, []);
 
     const fetchNews = async () => {
+      if (auth !== null) {
         setIsLoading(true);
-        const response = returnMockNews()
+        // console.log('uid: ', auth.currentUser?.uid);
+        const response = returnMockNews('');
         const data = response
         setNewsList(prevList => [...prevList, ...data]);
         setIsLoading(false);
+      }
     };
 
     const handleScroll = (index: number) => {
@@ -66,7 +71,7 @@ export const NewsFeed = () => {
 
     const conditionalRender = (index: number) => {
       console
-        if (index % 3 === 0) {
+        if (index % 7 === 0) {
             return true;
         }
         return false;
@@ -111,16 +116,21 @@ export const NewsFeed = () => {
 }
 
 const data = [
-    'hello',
-    'world',
-    'hello1',
-    'world1',
-    'hello2',
-    'world2',
-    'hello3',
+   "Today's pick", 
+   "left-leaning", 
+   "right-leaning",
+   "finance",
+   "sports",
+   "entertainment",
+   "fashion",
+   "travel",
+   "food",
+   "environment",
+   "health",
 ]
 
-function returnMockNews(): News[] {
+function returnMockNews(uid : string ): News[] {
+  console.log(uid)
     return Array.from({ length: 10 }, (_, index) => ({
         title: `News ${index}`,
         description: `Description ${index}`,

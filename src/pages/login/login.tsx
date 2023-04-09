@@ -12,13 +12,21 @@ import './login.css'
 
 
 
-export const Login = () => {
+export const Login = () => { 
+  console.log('fireBaseAuth');
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(fireBaseAuth, provider).then((result) => {
       const credential = GoogleAuthProvider.credentialFromResult(result);
+      console.log(credential);
+      //window.location.href = '/newsfeed';
     }).catch((error) => {
       console.log(error);
+    }).then(() => {
+      if (auth.currentUser) {
+        sessionStorage.setItem('user', auth.currentUser.uid);
+      }
+      window.location.href = '/newsfeed';
     });
   };
 
@@ -31,7 +39,7 @@ export const Login = () => {
 
         </div>
       <h1 style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto', marginTop: '1rem', marginBottom: '1rem', fontFamily: 'Nunito'}}>welcome back</h1>
-      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} >login to your account. don’t have one? <a href="">sign up instead.</a> </p>
+      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} >login to your account. don’t have one? <a href="/signup">sign up instead.</a> </p>
    
       <div className='login'>
         <form onSubmit={handleGoogleLogin}>
@@ -47,7 +55,7 @@ export const Login = () => {
         <a href="" style={{textAlign: 'left', float: 'left', marginLeft: '1.5rem', marginTop: '1rem'}} >forgot password</a>
 
       </div>
-        <img src={google} style={{marginTop: '1rem'}} />
+        <img src={google} style={{marginTop: '1rem'}} onClick={handleGoogleLogin}/>
       
       </div>
       

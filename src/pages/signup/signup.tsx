@@ -31,7 +31,7 @@ export const Signup = () => {
 
         </div>
       <h1 style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto', marginTop: '1rem', marginBottom: '1rem', fontFamily: 'Nunito'}}>create an account</h1>
-      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} > already have an account? <a href="">login instead </a></p>
+      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} > already have an account? <a href="/">login instead </a></p>
    
       <div className='login'>
         <form onSubmit={handleGoogleLogin}>
