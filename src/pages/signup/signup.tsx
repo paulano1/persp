@@ -12,7 +12,7 @@ import './login.css'
 
 
 
-export const Login = () => {
+export const Signup = () => {
   const handleGoogleLogin = () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(fireBaseAuth, provider).then((result) => {
@@ -30,8 +30,8 @@ export const Login = () => {
           <img src={logo} />
 
         </div>
-      <h1 style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto', marginTop: '1rem', marginBottom: '1rem', fontFamily: 'Nunito'}}>welcome back</h1>
-      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} >login to your account. don’t have one? <a href="">sign up instead.</a> </p>
+      <h1 style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto', marginTop: '1rem', marginBottom: '1rem', fontFamily: 'Nunito'}}>create an account</h1>
+      <p style={{textAlign: 'left', width: '90%', margin: 'auto', alignItems: 'auto'}} > already have an account? <a href="">login instead </a></p>
    
       <div className='login'>
         <form onSubmit={handleGoogleLogin}>
@@ -39,14 +39,20 @@ export const Login = () => {
             <input placeholder="email" type="email" required />
           </div>
           <div className='field'>
-            <input placeholder="password" type="password" required />
+            <input placeholder="create password" type="password" required />
           </div>
-            <button className="submit "type="submit">login</button>
-            
-        </form>
-        <a href="" style={{textAlign: 'left', float: 'left', marginLeft: '1.5rem', marginTop: '1rem'}} >forgot password</a>
+          <div className='field'>
+            <input placeholder="phone number" type="phone" required />
+          </div>
+          <div className='field' style={{}}>
+            <input placeholder="confirm password" type="password" required />
+          </div>
+        
+          <button className="submit "type="submit">sign up</button>
 
+        </form>
       </div>
+      <p style={{textAlign: 'center', marginTop: '1rem'}}> or</p>
         <img src={google} style={{marginTop: '1rem'}} />
       
       </div>
