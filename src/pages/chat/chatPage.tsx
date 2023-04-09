@@ -77,7 +77,7 @@ export const ChatPage = ({chatID} : ChatProps) => {
                     <div className="message-content">{message.content}</div>
                 </div>) : (
                <div>
-                 <p className="username" style={{marginLeft: '1rem'}}>{userID}: </p>
+                 <p className="username" style={{marginLeft: '1rem'}}>{`Pakalu Pakito`}: </p>
                  <div className="message-reciever" key={index}>
                     <div className="message-content">{message.content}</div>
                 </div>
@@ -98,28 +98,23 @@ export const ChatPage = ({chatID} : ChatProps) => {
 const temporaryData = [
 
   {
-    content: 'string',
+    content: 'Honestly I strongly relate to it',
     created: 'string',
     senderID: 'string',
   },
   {
-    content: 'string',
+    content: 'Pretty controversial but makes sense',
     created: 'string',
     senderID: 'jkahsdkjhajk'
   },
   {
-    content: 'string',
+    content: 'what do you guys think?',
     created: 'string',
     senderID: 'jkahsdkjhajk'
   },
   {
-    content: 'shakahsakashakahsakashakahsakashakahsakashakahsakashakahsakashakahsaka',
+    content: 'hmmm that sounds interesting',
     created: 'string',
     senderID: 'jkahsdkjhajk'
   },
-  {
-    content: 'string',
-    created: 'string',
-    senderID: 'jkahsdkjhajk'
-  }
 ]
