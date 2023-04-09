@@ -69,7 +69,7 @@ export const ChatPage = ({chatID} : ChatProps) => {
       }}/>
         <div className="chat-container">
           <div className="messages-container">
-            <span style={{backgroundColor: '#dbdbdb', height: '3rem', alignItems: 'center', borderRadius: '15px', padding: '1rem', marginBottom: '1rem'}}><b>Suggested topic:</b> Why should I buy your mom?</span>
+            <span style={{backgroundColor: '#dbdbdb', height: '3rem', alignItems: 'center', borderRadius: '15px', padding: '1rem', marginBottom: '1rem'}}><b>Suggested topic:</b> Why should government invest in planned parenthood?</span>
             {messages.map((message: ChatMessage, index: number) => (
               message.senderID === userID ? (
                 
