@@ -1,0 +1,47 @@
+
+
+*{
+
+}
+.nav img{
+    width: 10rem;
+    margin: 2rem;
+
+}
+
+.field{
+    width: 100%;
+    margin: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.field input{
+    width: 80vw;
+    height: 2rem;
+    border-radius: 1rem;
+    border: 1px solid rgb(83, 82, 82);
+    padding: 1em;
+}
+
+
+.login form{
+    display: flex;
+    flex-direction: column;
+}
+
+.submit{
+    width: 87%;
+    border-radius: 1rem;
+    margin-top: 1em;
+    cursor: pointer;
+    transform: translateX(.5em);
+    padding: 1em;
+    color: white;
+
+}
+
+
+

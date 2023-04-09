@@ -62,6 +62,7 @@ export const ChatPage = ({chatID} : ChatProps) => {
       <img src={backIcon} style={{width: '5rem', margin: '1rem'}}alt="" />
         <div className="chat-container">
           <div className="messages-container">
+            <span style={{backgroundColor: '#dbdbdb', height: '3rem', alignItems: 'center', borderRadius: '15px', padding: '1rem', marginBottom: '1rem'}}><b>Suggested topic:</b> Why should I buy your mom?</span>
             {messages.map((message: ChatMessage, index: number) => (
               message.senderID === userID ? (
                 
@@ -69,7 +70,7 @@ export const ChatPage = ({chatID} : ChatProps) => {
                     <div className="message-content">{message.content}</div>
                 </div>) : (
                <div>
-                 <p className="username">hello</p>
+                 <p className="username" style={{marginLeft: '1rem'}}>{userID}: </p>
                  <div className="message-reciever" key={index}>
                     <div className="message-content">{message.content}</div>
                 </div>

@@ -1,15 +1,16 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Authentication , Layout, NewsFeed, Profile, Chat} from './pages';
+import { Layout, NewsFeed, Profile, Chat, Login, Signup} from './pages';
 import { Route, Switch } from "wouter";
+
 
 function App() {
   return (
     <div className="App">
       <Switch>
         <Route path="/">
-          <Profile/>
+          <Login/>
         </Route>
         <Route path="/newsfeed">
           <NewsFeed/>
@@ -20,6 +21,13 @@ function App() {
         <Route path="/profile">
           <Profile/>
         </Route>
+        <Route path = "/login">
+          <Login />
+        </Route>
+        <Route path = "/signup">
+          <Signup />
+        </Route>
+        
       </Switch>
     </div>
   );
