@@ -160,7 +160,7 @@ const tmp : availableChats[] = [
         tags: ['stock market', 'finance', 'investing']
     },
     {
-        chatTopic: 'I am interested in aborting your dad',
+        chatTopic: 'Why should governments invest in planned parenthood?',
         chatId: '1234',
         tags: ['stock market', 'finance', 'investing']
     },
