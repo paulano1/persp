@@ -94,7 +94,17 @@ export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps
                     </div>
                     
                     <div className="News-action-buttons">
-                        {liked? <img src={isliked} className="News-action-btn"/> : <img src={heart} className="News-action-btn"/>}
+                        {liked ? <img src={isliked} className="News-action-btn"
+                            onClick={
+                                () => {
+                                    setLiked(false)
+                                }
+                            }
+                        /> : <img src={heart} className="News-action-btn" onClick={
+                            () => {
+                                setLiked(true)
+                            }
+                        }/>}
                         
                         <img src={addcomment} className="News-action-btn"/>
                         <img src={repost} className="News-action-btn"/>
