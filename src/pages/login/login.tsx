@@ -27,16 +27,7 @@ export const Login = () => {
       if (auth.currentUser) {
         
         sessionStorage.setItem('user', auth.currentUser.uid);
-        axios.post('https://us-central1-aiot-fit-xlab.cloudfunctions.net/purrspective', 
-        {"action" : "createuser",
-        "name" : " mr guy",
-        "phone" : "12023331232",
-        "email" : "email@server.com",
-        "userid" : "test1",
-        "gender" : "male",
-        "age" : 29,
-        "traits" : {"left-leaning": 34,    "right-leaning": 66,    "finance" : 48,    "sports" : 52,    "entertainment" : 50,    "fashion" : 27,    "travel" : 43,    "food" : 57,    "environment" : 43,    "health": 60}
-        }).then(() => {window.location.href = '/newsfeed'})
+       window.location.href = '/newsfeed'
       }
     });
   };

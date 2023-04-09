@@ -7,6 +7,9 @@ import { QuizContainer } from "./quiz";
 import { auth } from "../../firebase/firebase";
 import axios from "axios";
 import { title } from "process";
+import openai from "openai";
+
+let flag = 0
 
 interface News {
     title: string;
@@ -43,6 +46,7 @@ export const NewsFeed = () => {
     const [page, setPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
     const [containerRef, isVisible] = useOnScreen({ rootMargin: '0px', threshold: 0.5 });
+    const [quizData, setQuizData] = useState<QuizContent>();
     useEffect(() => {
         if (isVisible) {
             if (containerRef && (typeof containerRef === 'object' && 'current' in containerRef) && containerRef.current) {
@@ -75,10 +79,14 @@ export const NewsFeed = () => {
     const handleScroll = (index: number) => {
     };
 
-    const conditionalRender = (index: number) => {
-      console
+    const conditionalRender = (index: number, url : string) => {
         if (index % 7 === 0) {
+          // generateQuestion(url).then((data) => {
+          //   //setQuizData(data)
+          //   return true;
+          // })
             return true;
+
         }
         return false;
     };
@@ -99,9 +107,9 @@ export const NewsFeed = () => {
                 {newsList.map((newsItem, index) => {
                     handleScroll(index);
 
-                    if (conditionalRender(index)) {
+                    if (conditionalRender(index, newsItem.url) ) {
                       return (
-                           <QuizContainer question={quizData.question} options={quizData.options} answer={quizData.answer} />)
+                           <QuizContainer question={quizContent.question} options={quizContent.options} answer={quizContent.answer} />)
                       }
                       else {
                         return (
@@ -143,13 +151,73 @@ const news = {
     url: "https://www.usnews.com/news/politics/articles/2021-01-13/what-could-trumps-arraignment-mean-for-his-political-future",
     whyGotRecommended: "You might be interested in this article because you are interested in politics."
 }
-
-const quizData = {
-    question: "What is the capital of France?",
-    options: ["Paris", "London", "Berlin", "Madrid"],
-    answer: "Paris"
+const quizContent = {
+  question: "What is the capital of the United States?",
+  options: ["New York", "Washington", "Los Angeles", "Chicago"],
+  answer: "Washington",
 }
 
+interface QuizContent {
+  question: string;
+  options: string[];
+  answer: string;
+}
+
+async function generateQuestion(articleUrl: string): Promise<QuizContent> {
+  const apiKey = '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';
+  
+
+  let quizContent: QuizContent;
+ if (flag === 0) {
+  try {
+    const response = await axios.post(
+      'https://api.openai.com/v1/chat/completions',
+      {
+        model: 'gpt-3.5-turbo',
+        messages: [
+          {
+            role: 'user',
+            content: `As a question generator, generate one specific question pertaining to this article: ${articleUrl}. Provide exactly four options for answers, as well as the right answer. Do not use indexing for the options. Format it to JSON with fields: question, options and answer.`,
+          },
+        ],
+        "temperature": 0.7,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
+    const content = JSON.parse(response.data.choices[0].message.content);
+    quizContent = {
+      question: content.question,
+      options: content.options,
+      answer: content.answer,
+    };
+    return quizContent;
+    flag += 1;
+  } catch (error) {
+    quizContent = {
+      question: "What is the capital of the United States?",
+      options: ["New York", "Washington", "Los Angeles", "Chicago"],
+      answer: "Washington",
+    } }
+    finally {
+      return {
+        question: "What is the capital of the United States?",
+        options: ["New York", "Washington", "Los Angeles", "Chicago"],
+        answer: "Washington",
+      } ;
+    }
+  } else{
+    return {
+      question: "What is the capital of the United States?",
+      options: ["New York", "Washington", "Los Angeles", "Chicago"],
+      answer: "Washington",
+    } ;
+  }
+}
 
 
 const mockData = [
