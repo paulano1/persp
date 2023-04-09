@@ -4,9 +4,10 @@ import info from '../newsfeed/info.png'
 
 interface SliderProps {
   defaultValue?: number;
+  openModal: (isOpen: boolean) => void;
 }
 
-export const ConstantSlider: React.FC<SliderProps> = ({ defaultValue = 50 }) => {
+export const ConstantSlider: React.FC<SliderProps> = ({ defaultValue = 50, openModal }) => {
   const [value, setValue] = useState(defaultValue);
   
   return (
@@ -29,7 +30,9 @@ export const ConstantSlider: React.FC<SliderProps> = ({ defaultValue = 50 }) => 
 
         </div>
        
-        <img src={info} className="Info-icon"/>
+        <img src={info} className="Info-icon" onClick={()=>{
+            openModal(true)      
+            }}/>
 
       </div>
       

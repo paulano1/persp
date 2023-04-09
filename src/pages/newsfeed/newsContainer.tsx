@@ -8,8 +8,10 @@ import repost from './repost.svg'
 import save from './save.svg'
 import { Slider } from '../components/slider'
 import { ConstantSlider } from '../components/constantSlider'
+import { Box, Button, Modal, Typography } from "@mui/material";
 
 const exampleQuery = [[{"label":"Democrat","score":0.9850274324417114},{"label":"Republican","score":0.014972536824643612}]]
+
 
 async function query(data: any) {
 	const response = await fetch(
@@ -42,10 +44,50 @@ interface NewsContainerProps {
         whyGotRecommended: string;
     }
 
+interface RepostContainerProps {
+    url : string;
+    image : string;
+    title : string;
+}
+
+const RepostContainer = ({url, title, image} : RepostContainerProps) => {
+    const [comment, setComment] = React.useState('')
+    return (
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '60%',
+            justifyContent: 'center',
+            marginTop: '50%',
+            marginLeft: '20%',
+            backgroundColor: 'white',
+            borderRadius: '10px',
+        }}>
+            <img src={repost} style={{width: '50px', height: '50px', marginLeft: '10px'}}/>
+            <textarea placeholder="Add a comment" style={{
+                overflowWrap: 'break-word',
+                border: 'none',
+                outline: 'none',
+                height: '100px',
+                padding: '10px',
+                borderRadius: '10px',
+            }} value={comment} onChange={(e) => setComment(e.target.value)} />
+            <Box>
+                <Box>
+                    {title}
+                </Box>
+                <img src={`${image}`} style={{width: '100px', height: '100px', borderRadius: '10px'}}/>
+            </Box>
+        </Box>
+    )
+}
+
 export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps>(
         ({ title, description, image, url, whyGotRecommended }, ref) => {
     const [comment, setComment] = React.useState('')
     const [ liked, setLiked ] = React.useState<boolean>(false)
+    const [modalOpen, setModalOpen] = useState(false);
+    const [open, setOpen] = React.useState(false);
     const onIntersection = useCallback(
         (entries: IntersectionObserverEntry[]) => {
             entries.forEach(entry => {
@@ -68,6 +110,9 @@ export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps
             };
         }
     }, [ref, onIntersection]);
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
    
         return (
             <div ref={ref} className="NewsContainer">
@@ -79,8 +124,22 @@ export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps
 
                 <ConstantSlider
                 defaultValue={20}
+                openModal={() => setModalOpen(true)}
                 />
-              
+                <Button onClick={handleOpen}>Open modal</Button>
+                            <Modal
+                                    open={open}
+                                    onClose={handleClose}
+                                    aria-labelledby="modal-modal-title"
+                                    aria-describedby="modal-modal-description"
+                                    >
+                           <RepostContainer 
+                                url={url}
+                                title={title}
+                                image={image}
+                            />
+                            </Modal>
+
                 <div className="News-actions">
                     <div className="News-action-quote-container">
                         <img src={repost} className="News-quote-repost-icon"/>
@@ -107,7 +166,11 @@ export const NewsContainer = React.forwardRef<HTMLDivElement, NewsContainerProps
                         }/>}
                         
                         <img src={addcomment} className="News-action-btn"/>
-                        <img src={repost} className="News-action-btn"/>
+                        <img src={repost} className="News-action-btn" onClick={
+                            () => {
+                                setModalOpen(true)
+                            }
+                        }/>
                         <img src={save} className="News-action-btn"/>
                     </div>
                 </div>

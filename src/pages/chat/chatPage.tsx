@@ -9,9 +9,13 @@ interface ChatMessage {
     senderID: string;
   }
 
-  interface ChatProps {
+interface ChatProps {
     chatID: string;
     }
+
+
+
+
 export const ChatPage = ({chatID} : ChatProps) => {
     const [inputValue, setInputValue] = useState('');
     const [messages, setMessages] = useState<ChatMessage[]>(temporaryData);
@@ -59,7 +63,10 @@ export const ChatPage = ({chatID} : ChatProps) => {
     };
     return (
       <>
-      <img src={backIcon} style={{width: '5rem', margin: '1rem'}}alt="" />
+      <img src={backIcon} style={{width: '5rem', margin: '1rem'}}alt="" onClick={
+        () => {
+          window.location.href = '/chat'
+      }}/>
         <div className="chat-container">
           <div className="messages-container">
             {messages.map((message: ChatMessage, index: number) => (
