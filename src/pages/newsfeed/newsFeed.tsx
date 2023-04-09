@@ -34,7 +34,7 @@ function useOnScreen(options: any) {
     }, [options]);
   
     return [ref, isVisible];
-  }
+}
 
 export const NewsFeed = () => {
     const [newsList, setNewsList] = useState<News[]>([]);
@@ -58,10 +58,14 @@ export const NewsFeed = () => {
     const fetchNews = async () => {
       if (auth !== null) {
         setIsLoading(true);
-        // console.log('uid: ', auth.currentUser?.uid);
-        const response = returnMockNews('');
-        const data = response
-        setNewsList(prevList => [...prevList, ...data]);
+        const uid = sessionStorage.getItem('user')
+        if (uid === null) {
+          return
+        }
+        const news = await returnMockNews(uid);
+        setNewsList( (prevNewsList) => {
+          return [...prevNewsList, ...news];
+        });
         setIsLoading(false);
       }
     };
@@ -129,15 +133,27 @@ const data = [
    "health",
 ]
 
-function returnMockNews(uid : string ): News[] {
-  console.log(uid)
-    return Array.from({ length: 10 }, (_, index) => ({
-        title: `News ${index}`,
-        description: `Description ${index}`,
-        image: `https://picsum.photos/200/300?random=${index}`,
-        url: `https://www.google.com/search?q=${index}`,
-        whyGotRecommended: `You might be interested in this article because you are interested in ${data[index]}.`
-    }));
+async function returnMockNews(uid : string ): Promise<News[]> {
+  const response = await fetch('https://fb6c-65-113-61-98.ngrok-free.app/match_user_posts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      uid: "userid1",
+    }),
+  })
+  const data = await response.json();
+  console.log(data);
+  return data.map((item: any) => {
+    return {
+      title: item.title,
+      description: item.description,
+      image: item.urlToImage,
+      url: item.url,
+      whyGotRecommended: item.whyGotRecommended,
+    }
+  })
 }
 
 const news = {
@@ -153,3 +169,6 @@ const quizData = {
     options: ["Paris", "London", "Berlin", "Madrid"],
     answer: "Paris"
 }
+
+
+

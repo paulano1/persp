@@ -25,8 +25,24 @@ export const Login = () => {
     }).then(() => {
       if (auth.currentUser) {
         sessionStorage.setItem('user', auth.currentUser.uid);
+        fetch('https://us-central1-aiot-fit-xlab.cloudfunctions.net/purrspective', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin':'*'
+        },
+         body: JSON.stringify({"action" : "createuser",
+          "name" :  auth.currentUser.displayName,
+          "phone" : "12023331232",
+          "email" : auth.currentUser.email,
+          "userid" : auth.currentUser.uid,
+          "gender" : "male",
+          "age" : 29,
+          "traits" : {"left-leaning": 50,    "right-leaning": 50,    "finance" : 50,    "sports" : 50,    "entertainment" : 50,    "fashion" : 50,    "travel" : 50,    "food" : 50,    "environment" : 50,    "health": 50}
+          } )
+        }).then(() => {window.location.href = '/newsfeed'})
       }
-      window.location.href = '/newsfeed';
     });
   };
 
