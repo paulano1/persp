@@ -81,31 +81,7 @@ export const NewsFeed = () => {
 
     const conditionalRender = (index: number, url : string) => {
         if (index % 7 === 0) {
-          axios.post(
-            'https://api.openai.com/v1/chat/completions',
-            {
-              model: 'gpt-3.5-turbo',
-              messages: [
-                {
-                  role: 'user',
-                  content: `As a question generator, generate one specific question pertaining to this article: ${articleUrl}. Provide exactly four options for answers, as well as the right answer. Do not use indexing for the options. Format it to JSON with fields: question, options and answer.`,
-                },
-              ],
-              "temperature": 0.7,
-            },
-            {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${apiKey}`,
-              },
-            }
-          ).then((response) => {
-            const content = JSON.parse(response.data.choices[0].message.content);
-        setQuizData( {
-              question: content.question,
-              options: content.options,
-              answer: content.answer,
-            })
+          
             return true;
 
         }
