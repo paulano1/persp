@@ -1,33 +1,40 @@
+
+
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
+    justify-content: flex-end;
+    height: 75vh;
     width: 100%;
   }
-  
+
+
+
   .messages-container {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex-grow: 1;
+    height: 100%;
     padding: 10px;
   }
   
   .message-user {
     align-self: flex-end;
-    background-color: #c1e1c5;
-    border-radius: 10px;
-    margin: 5px;
+    background-color: #ededed;
+    border-radius: 15px 15px 0px 15px;
     padding: 10px;
+    margin: 5px;
     max-width: 60%;
     text-align: right;
   }
   
   .message-reciever {
     align-self: flex-start;
-    background-color: #ededed;
-    border-radius: 10px;
+    background-color: #000000;
+    color: white;
+    border-radius: 15px 15px 15px 0;
     margin: 5px;
     padding: 10px;
     max-width: 60%;
@@ -36,6 +43,12 @@
   
   .message-content {
     word-wrap: break-word;
+  }
+
+  .username{
+    transform: translateX(-10px);
+    opacity: 0.5;
+    font-weight: medium;
   }
   
   form {
@@ -47,20 +60,24 @@
   
   input[type="text"] {
     flex-grow: 1;
-    margin-right: 10px;
-    padding: 10px;
+    margin-right: 0.5rem;
+    padding: 1rem;
     border-radius: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 0.9rem;
+    background-color: #ededed;
+    margin-left: 1rem;
+    height: 1.5rem;
   }
   
   button[type="submit"] {
-    background-color: #4caf50;
-    color: white;
+    background-color: #000;
+    height: 3.5rem;
     border: none;
-    padding: 10px 20px;
+    padding: 1rem;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 0.9rem;
     cursor: pointer;
+    margin-right: 1rem;
   }
   

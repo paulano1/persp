@@ -4,7 +4,7 @@ import { Chip } from "@mui/material";
 import add from './Add.png'
 import startConvoButton from './startConvo.svg'
 import './chatController.css'
-import chatAvatar from './chatAvatar.svg'
+import chatAvatar from './gc.svg'
 import { ChatPage } from "./chatPage";
 
 function generateRandomGradient() {
@@ -58,7 +58,10 @@ const CreateAConversation = ({input, setInput, chips, setChips, setID} : ChatPro
             </div>
             <div className="Create-Convo-input-bar">
                 <input type="text" placeholder="Add a topic you are interested in" value={input} onChange={(e) => setInput(e.target.value)} />
-                <img src={add} alt="add" onClick={() => {
+                
+                
+                
+                <img src={add} alt="add"  className = "startConvobtn" onClick={() => {
                     if (input !== '') {
                         setChips([...chips, input]);
                         setInput('');
@@ -66,9 +69,19 @@ const CreateAConversation = ({input, setInput, chips, setChips, setID} : ChatPro
                 } } />
             </div>
 
-        </div><div className="Create-Convo-button" onClick={onSubmit}>
+        </div>
+        
+        <div className="conversation">
+            <div className="safeTalk">SafeTalk is <b>ON</b></div>
+            <div className="Create-Convo-button" onClick={onSubmit}> 
                 <img src={startConvoButton} alt="start conversation" />
-            </div></>
+            </div>
+
+            
+        </div>
+        <h1 style={{textAlign: 'left', fontSize: '1.2rem', margin: '1.5rem 2rem 1rem 2rem'}}>your discussion groups:</h1>
+
+        </>
 
     );
 }

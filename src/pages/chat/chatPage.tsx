@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './chatPage.css'
+import sendIcon from './send.svg'
+import backIcon from './chats.svg'
 
 interface ChatMessage {
     content: string;
@@ -12,39 +14,39 @@ interface ChatMessage {
     }
 export const ChatPage = ({chatID} : ChatProps) => {
     const [inputValue, setInputValue] = useState('');
-    const [messages, setMessages] = useState<ChatMessage[]>([]);
+    const [messages, setMessages] = useState<ChatMessage[]>(temporaryData);
     const userID = 'jkahsdkjhajk'
     useEffect(() => {
         const interval = setInterval(() => {
             // console.log(chatID);
-            fetch(`http://198.74.61.204/getMessages/${chatID}`, {
-                headers: {
-                  Accept: "application/json"
-                }
-              }).then((response) => response.json()).then((data) => {
-                setMessages(data);
-              });
+            // fetch(`http://198.74.61.204/getMessages/${chatID}`, {
+            //     headers: {
+            //       Accept: "application/json"
+            //     }
+            //   }).then((response) => response.json()).then((data) => {
+            //     setMessages(data);
+            //   });
         }, 5000);
     
         return () => clearInterval(interval);
       }, [])
     const onSendMessage = (message: string) => {
         //send a post request
-        fetch("http://198.74.61.204/sendMessage", {
-                    body: JSON.stringify({
-                        session_id: chatID,
-                        user_id: userID,
-                        message: message,
-                    }),
+        // fetch("http://198.74.61.204/sendMessage", {
+        //             body: JSON.stringify({
+        //                 session_id: chatID,
+        //                 user_id: userID,
+        //                 message: message,
+        //             }),
 
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json"
-                    },
-                    method: "POST"
-                        }).catch((error) => {
-                            console.log(error);
-                        })
+        //             headers: {
+        //                 Accept: "application/json",
+        //                 "Content-Type": "application/json"
+        //             },
+        //             method: "POST"
+        //                 }).catch((error) => {
+        //                     console.log(error);
+        //                 })
     }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
@@ -56,23 +58,60 @@ export const ChatPage = ({chatID} : ChatProps) => {
         setInputValue('');
     };
     return (
+      <>
+      <img src={backIcon} style={{width: '5rem', margin: '1rem'}}alt="" />
         <div className="chat-container">
           <div className="messages-container">
             {messages.map((message: ChatMessage, index: number) => (
               message.senderID === userID ? (
+                
                 <div className="message-user" key={index}>
                     <div className="message-content">{message.content}</div>
                 </div>) : (
-                <div className="message-reciever" key={index}>
+               <div>
+                 <p className="username">hello</p>
+                 <div className="message-reciever" key={index}>
                     <div className="message-content">{message.content}</div>
                 </div>
+               </div>  
                 )
             ))}
           </div>
-          <form onSubmit={handleFormSubmit}>
-            <input type="text" value={inputValue} onChange={handleInputChange} />
-            <button type="submit">Send</button>
+          <form className="sendTextContainer" onSubmit={handleFormSubmit}>
+            <input type="text" placeholder="write a message (be respectful)" value={inputValue} onChange={handleInputChange} />
+            <button type="submit"><img src={sendIcon} /></button>
           </form>
         </div>
+    </>
       );
     };
+
+
+const temporaryData = [
+
+  {
+    content: 'string',
+    created: 'string',
+    senderID: 'string',
+  },
+  {
+    content: 'string',
+    created: 'string',
+    senderID: 'jkahsdkjhajk'
+  },
+  {
+    content: 'string',
+    created: 'string',
+    senderID: 'jkahsdkjhajk'
+  },
+  {
+    content: 'shakahsakashakahsakashakahsakashakahsakashakahsakashakahsakashakahsaka',
+    created: 'string',
+    senderID: 'jkahsdkjhajk'
+  },
+  {
+    content: 'string',
+    created: 'string',
+    senderID: 'jkahsdkjhajk'
+  }
+]
